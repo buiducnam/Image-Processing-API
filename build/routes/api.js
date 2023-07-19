@@ -22,7 +22,7 @@ router.get("/images", (req, res, next) => __awaiter(void 0, void 0, void 0, func
     if (!fileName) {
         next("Invalid original file names");
     }
-    else if (isNaN(Number(width)) || isNaN(Number(height))) {
+    else if (isNaN(Number(width)) || isNaN(Number(height)) || Number(height) < 1 || Number(width) < 1) {
         next("Invalid height/width parameters");
     }
     else if (!fs_1.default.existsSync(`images/${fileName}`)) {

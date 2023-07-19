@@ -11,15 +11,14 @@ const resizeFile = (
   height: number,
   fileName: string
 ) => {
+  
   return sharp(bufferFile)
     .rotate()
     .resize(Number(width), Number(height))
     .jpeg({ mozjpeg: true })
     .toBuffer()
     .then(async (data) => {
-      if (!fs.existsSync(`images/resize-images/${fileName}`)) {
         await fsPromise.writeFile(`images/resize-images/${fileName}`, data);
-      }
       return {
         code: 200,
         content: `images/resize-images/${fileName}`,

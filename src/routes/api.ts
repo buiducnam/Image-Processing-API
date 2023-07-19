@@ -11,7 +11,7 @@ router.get(
     const { fileName = "", width = 300, height = 300 } = req.query;
     if (!fileName) {
       next("Invalid original file names");
-    } else if (isNaN(Number(width)) || isNaN(Number(height))) {
+    } else if (isNaN(Number(width)) || isNaN(Number(height)) || Number(height) < 1 || Number(width) < 1) {
       next("Invalid height/width parameters");
     } else if (!fs.existsSync(`images/${fileName}`)) {
       next("The fileName is not exists");
